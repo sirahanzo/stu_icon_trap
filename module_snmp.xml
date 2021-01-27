@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_snmp" default="compile.module.snmp">
+  <dirname property="module.snmp.basedir" file="${ant.file.module_snmp}"/>
+  
+  
+  <property name="compiler.args.snmp" value="-encoding UTF-8 -source 8 -target 1.8 ${compiler.args}"/>
+  
+  <property name="snmp.output.dir" value="${module.snmp.basedir}/target/classes"/>
+  <property name="snmp.testoutput.dir" value="${module.snmp.basedir}/target/test-classes"/>
+  
+  <path id="snmp.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="snmp.module.production.classpath">
+    <path refid="library.adventnet-logging-4.0.71.classpath"/>
+    <fileset dir="${basedir}/lib">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <path refid="library.lib.classpath"/>
+    <path refid="library.adventnet-snmp-4.0.7.classpath"/>
+    <path refid="library.adventnet-logging-4.0.7.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-starter-data-jdbc:2.2.4.release.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-starter-jdbc:2.2.4.release.classpath"/>
+    <path refid="library.maven:_com.zaxxer:hikaricp:3.4.2.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-jdbc:5.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework.data:spring-data-jdbc:1.1.4.release.classpath"/>
+    <path refid="library.maven:_org.springframework.data:spring-data-relational:1.1.4.release.classpath"/>
+    <path refid="library.maven:_org.springframework.data:spring-data-commons:2.2.4.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-tx:5.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-context:5.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-aop:5.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-expression:5.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-beans:5.2.3.release.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.7.30.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot:2.2.4.release.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-autoconfigure:2.2.4.release.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-configuration-processor:2.2.4.release.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-starter:2.2.4.release.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-starter-logging:2.2.4.release.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-classic:1.2.3.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-core:1.2.3.classpath"/>
+    <path refid="library.maven:_org.apache.logging.log4j:log4j-to-slf4j:2.12.1.classpath"/>
+    <path refid="library.maven:_org.apache.logging.log4j:log4j-api:2.12.1.classpath"/>
+    <path refid="library.maven:_org.slf4j:jul-to-slf4j:1.7.30.classpath"/>
+    <path refid="library.maven:_jakarta.annotation:jakarta.annotation-api:1.3.5.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-core:5.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-jcl:5.2.3.release.classpath"/>
+    <path refid="library.maven:_org.projectlombok:lombok:1.18.10.classpath"/>
+    <pathelement location="${basedir}/lib/adventnet-logging-4.0.7.jar"/>
+    <pathelement location="${basedir}/lib/adventnet-snmp-4.0.7.jar"/>
+  </path>
+  
+  <path id="snmp.runtime.production.module.classpath">
+    <pathelement location="${snmp.output.dir}"/>
+    <path refid="library.adventnet-logging-4.0.71.classpath"/>
+    <fileset dir="${basedir}/lib">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <path refid="library.lib.classpath"/>
+    <path refid="library.adventnet-snmp-4.0.7.classpath"/>
+    <path refid="library.adventnet-logging-4.0.7.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-starter-data-jdbc:2.2.4.release.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-starter-jdbc:2.2.4.release.classpath"/>
+    <path refid="library.maven:_com.zaxxer:hikaricp:3.4.2.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-jdbc:5.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework.data:spring-data-jdbc:1.1.4.release.classpath"/>
+    <path refid="library.maven:_org.springframework.data:spring-data-relational:1.1.4.release.classpath"/>
+    <path refid="library.maven:_org.springframework.data:spring-data-commons:2.2.4.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-tx:5.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-context:5.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-aop:5.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-expression:5.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-beans:5.2.3.release.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.7.30.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-devtools:2.2.4.release.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot:2.2.4.release.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-autoconfigure:2.2.4.release.classpath"/>
+    <path refid="library.maven:_mysql:mysql-connector-java:8.0.19.classpath"/>
+    <path refid="library.maven:_org.postgresql:postgresql:42.2.9.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-configuration-processor:2.2.4.release.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-starter:2.2.4.release.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-starter-logging:2.2.4.release.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-classic:1.2.3.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-core:1.2.3.classpath"/>
+    <path refid="library.maven:_org.apache.logging.log4j:log4j-to-slf4j:2.12.1.classpath"/>
+    <path refid="library.maven:_org.apache.logging.log4j:log4j-api:2.12.1.classpath"/>
+    <path refid="library.maven:_org.slf4j:jul-to-slf4j:1.7.30.classpath"/>
+    <path refid="library.maven:_jakarta.annotation:jakarta.annotation-api:1.3.5.classpath"/>
+    <path refid="library.maven:_org.yaml:snakeyaml:1.25.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-core:5.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-jcl:5.2.3.release.classpath"/>
+    <path refid="library.maven:_org.projectlombok:lombok:1.18.10.classpath"/>
+    <pathelement location="${basedir}/lib/adventnet-logging-4.0.7.jar"/>
+    <pathelement location="${basedir}/lib/adventnet-snmp-4.0.7.jar"/>
+  </path>
+  
+  <path id="snmp.module.classpath">
+    <pathelement location="${snmp.output.dir}"/>
+    <path refid="library.adventnet-logging-4.0.71.classpath"/>
+    <fileset dir="${basedir}/lib">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <path refid="library.lib.classpath"/>
+    <path refid="library.adventnet-snmp-4.0.7.classpath"/>
+    <path refid="library.adventnet-logging-4.0.7.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-starter-data-jdbc:2.2.4.release.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-starter-jdbc:2.2.4.release.classpath"/>
+    <path refid="library.maven:_com.zaxxer:hikaricp:3.4.2.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-jdbc:5.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework.data:spring-data-jdbc:1.1.4.release.classpath"/>
+    <path refid="library.maven:_org.springframework.data:spring-data-relational:1.1.4.release.classpath"/>
+    <path refid="library.maven:_org.springframework.data:spring-data-commons:2.2.4.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-tx:5.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-context:5.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-aop:5.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-expression:5.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-beans:5.2.3.release.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.7.30.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-devtools:2.2.4.release.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot:2.2.4.release.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-autoconfigure:2.2.4.release.classpath"/>
+    <path refid="library.maven:_mysql:mysql-connector-java:8.0.19.classpath"/>
+    <path refid="library.maven:_org.postgresql:postgresql:42.2.9.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-configuration-processor:2.2.4.release.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-starter-test:2.2.4.release.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-starter:2.2.4.release.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-starter-logging:2.2.4.release.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-classic:1.2.3.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-core:1.2.3.classpath"/>
+    <path refid="library.maven:_org.apache.logging.log4j:log4j-to-slf4j:2.12.1.classpath"/>
+    <path refid="library.maven:_org.apache.logging.log4j:log4j-api:2.12.1.classpath"/>
+    <path refid="library.maven:_org.slf4j:jul-to-slf4j:1.7.30.classpath"/>
+    <path refid="library.maven:_jakarta.annotation:jakarta.annotation-api:1.3.5.classpath"/>
+    <path refid="library.maven:_org.yaml:snakeyaml:1.25.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-test:2.2.4.release.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-test-autoconfigure:2.2.4.release.classpath"/>
+    <path refid="library.maven:_com.jayway.jsonpath:json-path:2.4.0.classpath"/>
+    <path refid="library.maven:_net.minidev:json-smart:2.3.classpath"/>
+    <path refid="library.maven:_net.minidev:accessors-smart:1.2.classpath"/>
+    <path refid="library.maven:_org.ow2.asm:asm:5.0.4.classpath"/>
+    <path refid="library.maven:_jakarta.xml.bind:jakarta.xml.bind-api:2.3.2.classpath"/>
+    <path refid="library.maven:_jakarta.activation:jakarta.activation-api:1.2.1.classpath"/>
+    <path refid="library.maven:_org.junit.jupiter:junit-jupiter:5.5.2.classpath"/>
+    <path refid="library.maven:_org.junit.jupiter:junit-jupiter-api:5.5.2.classpath"/>
+    <path refid="library.maven:_org.apiguardian:apiguardian-api:1.1.0.classpath"/>
+    <path refid="library.maven:_org.opentest4j:opentest4j:1.2.0.classpath"/>
+    <path refid="library.maven:_org.junit.platform:junit-platform-commons:1.5.2.classpath"/>
+    <path refid="library.maven:_org.junit.jupiter:junit-jupiter-params:5.5.2.classpath"/>
+    <path refid="library.maven:_org.junit.jupiter:junit-jupiter-engine:5.5.2.classpath"/>
+    <path refid="library.maven:_org.junit.platform:junit-platform-engine:1.5.2.classpath"/>
+    <path refid="library.maven:_org.mockito:mockito-junit-jupiter:3.1.0.classpath"/>
+    <path refid="library.maven:_org.assertj:assertj-core:3.13.2.classpath"/>
+    <path refid="library.maven:_org.hamcrest:hamcrest:2.1.classpath"/>
+    <path refid="library.maven:_org.mockito:mockito-core:3.1.0.classpath"/>
+    <path refid="library.maven:_net.bytebuddy:byte-buddy:1.10.6.classpath"/>
+    <path refid="library.maven:_net.bytebuddy:byte-buddy-agent:1.10.6.classpath"/>
+    <path refid="library.maven:_org.objenesis:objenesis:2.6.classpath"/>
+    <path refid="library.maven:_org.skyscreamer:jsonassert:1.5.0.classpath"/>
+    <path refid="library.maven:_com.vaadin.external.google:android-json:0.0.20131108.vaadin1.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-core:5.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-jcl:5.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-test:5.2.3.release.classpath"/>
+    <path refid="library.maven:_org.xmlunit:xmlunit-core:2.6.3.classpath"/>
+    <path refid="library.maven:_org.projectlombok:lombok:1.18.10.classpath"/>
+    <pathelement location="${basedir}/lib/adventnet-logging-4.0.7.jar"/>
+    <pathelement location="${basedir}/lib/adventnet-snmp-4.0.7.jar"/>
+  </path>
+  
+  <path id="snmp.runtime.module.classpath">
+    <pathelement location="${snmp.testoutput.dir}"/>
+    <pathelement location="${snmp.output.dir}"/>
+    <path refid="library.adventnet-logging-4.0.71.classpath"/>
+    <fileset dir="${basedir}/lib">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <path refid="library.lib.classpath"/>
+    <path refid="library.adventnet-snmp-4.0.7.classpath"/>
+    <path refid="library.adventnet-logging-4.0.7.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-starter-data-jdbc:2.2.4.release.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-starter-jdbc:2.2.4.release.classpath"/>
+    <path refid="library.maven:_com.zaxxer:hikaricp:3.4.2.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-jdbc:5.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework.data:spring-data-jdbc:1.1.4.release.classpath"/>
+    <path refid="library.maven:_org.springframework.data:spring-data-relational:1.1.4.release.classpath"/>
+    <path refid="library.maven:_org.springframework.data:spring-data-commons:2.2.4.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-tx:5.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-context:5.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-aop:5.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-expression:5.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-beans:5.2.3.release.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.7.30.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-devtools:2.2.4.release.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot:2.2.4.release.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-autoconfigure:2.2.4.release.classpath"/>
+    <path refid="library.maven:_mysql:mysql-connector-java:8.0.19.classpath"/>
+    <path refid="library.maven:_org.postgresql:postgresql:42.2.9.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-configuration-processor:2.2.4.release.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-starter-test:2.2.4.release.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-starter:2.2.4.release.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-starter-logging:2.2.4.release.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-classic:1.2.3.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-core:1.2.3.classpath"/>
+    <path refid="library.maven:_org.apache.logging.log4j:log4j-to-slf4j:2.12.1.classpath"/>
+    <path refid="library.maven:_org.apache.logging.log4j:log4j-api:2.12.1.classpath"/>
+    <path refid="library.maven:_org.slf4j:jul-to-slf4j:1.7.30.classpath"/>
+    <path refid="library.maven:_jakarta.annotation:jakarta.annotation-api:1.3.5.classpath"/>
+    <path refid="library.maven:_org.yaml:snakeyaml:1.25.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-test:2.2.4.release.classpath"/>
+    <path refid="library.maven:_org.springframework.boot:spring-boot-test-autoconfigure:2.2.4.release.classpath"/>
+    <path refid="library.maven:_com.jayway.jsonpath:json-path:2.4.0.classpath"/>
+    <path refid="library.maven:_net.minidev:json-smart:2.3.classpath"/>
+    <path refid="library.maven:_net.minidev:accessors-smart:1.2.classpath"/>
+    <path refid="library.maven:_org.ow2.asm:asm:5.0.4.classpath"/>
+    <path refid="library.maven:_jakarta.xml.bind:jakarta.xml.bind-api:2.3.2.classpath"/>
+    <path refid="library.maven:_jakarta.activation:jakarta.activation-api:1.2.1.classpath"/>
+    <path refid="library.maven:_org.junit.jupiter:junit-jupiter:5.5.2.classpath"/>
+    <path refid="library.maven:_org.junit.jupiter:junit-jupiter-api:5.5.2.classpath"/>
+    <path refid="library.maven:_org.apiguardian:apiguardian-api:1.1.0.classpath"/>
+    <path refid="library.maven:_org.opentest4j:opentest4j:1.2.0.classpath"/>
+    <path refid="library.maven:_org.junit.platform:junit-platform-commons:1.5.2.classpath"/>
+    <path refid="library.maven:_org.junit.jupiter:junit-jupiter-params:5.5.2.classpath"/>
+    <path refid="library.maven:_org.junit.jupiter:junit-jupiter-engine:5.5.2.classpath"/>
+    <path refid="library.maven:_org.junit.platform:junit-platform-engine:1.5.2.classpath"/>
+    <path refid="library.maven:_org.mockito:mockito-junit-jupiter:3.1.0.classpath"/>
+    <path refid="library.maven:_org.assertj:assertj-core:3.13.2.classpath"/>
+    <path refid="library.maven:_org.hamcrest:hamcrest:2.1.classpath"/>
+    <path refid="library.maven:_org.mockito:mockito-core:3.1.0.classpath"/>
+    <path refid="library.maven:_net.bytebuddy:byte-buddy:1.10.6.classpath"/>
+    <path refid="library.maven:_net.bytebuddy:byte-buddy-agent:1.10.6.classpath"/>
+    <path refid="library.maven:_org.objenesis:objenesis:2.6.classpath"/>
+    <path refid="library.maven:_org.skyscreamer:jsonassert:1.5.0.classpath"/>
+    <path refid="library.maven:_com.vaadin.external.google:android-json:0.0.20131108.vaadin1.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-core:5.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-jcl:5.2.3.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-test:5.2.3.release.classpath"/>
+    <path refid="library.maven:_org.xmlunit:xmlunit-core:2.6.3.classpath"/>
+    <path refid="library.maven:_org.projectlombok:lombok:1.18.10.classpath"/>
+    <pathelement location="${basedir}/lib/adventnet-logging-4.0.7.jar"/>
+    <pathelement location="${basedir}/lib/adventnet-snmp-4.0.7.jar"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.snmp">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.snmp">
+    <patternset refid="compiler.excluded"/>
+    <patternset refid="excluded.from.module.snmp"/>
+  </patternset>
+  
+  <path id="snmp.module.sourcepath">
+    <dirset dir="${module.snmp.basedir}">
+      <include name="src/main/java"/>
+      <include name="src/main/resources"/>
+    </dirset>
+  </path>
+  
+  <path id="snmp.module.test.sourcepath">
+    <dirset dir="${module.snmp.basedir}">
+      <include name="src/test/java"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.snmp" depends="compile.module.snmp.production,compile.module.snmp.tests" description="Compile module snmp"/>
+  
+  <target name="compile.module.snmp.production" description="Compile module snmp; production classes">
+    <mkdir dir="${snmp.output.dir}"/>
+    <javac destdir="${snmp.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true">
+      <compilerarg line="${compiler.args.snmp}"/>
+      <bootclasspath refid="snmp.module.bootclasspath"/>
+      <classpath refid="snmp.module.production.classpath"/>
+      <src refid="snmp.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.snmp"/>
+    </javac>
+    
+    <copy todir="${snmp.output.dir}">
+      <fileset dir="${module.snmp.basedir}/src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+        <patternset refid="excluded.from.compilation.snmp"/>
+      </fileset>
+      <fileset dir="${module.snmp.basedir}/src/main/resources">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+        <patternset refid="excluded.from.compilation.snmp"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.snmp.tests" depends="compile.module.snmp.production" description="compile module snmp; test classes" unless="skip.tests">
+    <mkdir dir="${snmp.testoutput.dir}"/>
+    <javac destdir="${snmp.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true">
+      <compilerarg line="${compiler.args.snmp}"/>
+      <bootclasspath refid="snmp.module.bootclasspath"/>
+      <classpath refid="snmp.module.classpath"/>
+      <src refid="snmp.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.snmp"/>
+    </javac>
+    
+    <copy todir="${snmp.testoutput.dir}">
+      <fileset dir="${module.snmp.basedir}/src/test/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+        <patternset refid="excluded.from.compilation.snmp"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.snmp" description="cleanup module">
+    <delete dir="${snmp.output.dir}"/>
+    <delete dir="${snmp.testoutput.dir}"/>
+  </target>
+</project>

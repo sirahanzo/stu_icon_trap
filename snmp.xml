@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="snmp" default="all">
+  
+  
+  <property file="snmp.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/*.rbc/**"/>
+    <exclude name="**/*.yarb/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="compiler.excluded">
+    <exclude name="${basedir}/lib/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.egg"/>
+    <include name="*.jar"/>
+    <include name="*.ear"/>
+    <include name="*.ane"/>
+    <include name="*.klib"/>
+    <include name="*.swc"/>
+    <include name="*.war"/>
+    <include name="*.zip"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+    <exclude name="**/?*.aj"/>
+  </patternset>
+  
+  
+  <!-- Project Libraries -->
+  
+  <path id="library.adventnet-logging-4.0.7.classpath">
+    <pathelement location="${basedir}/../Dev-Library/adventnet-logging-4.0.7.jar"/>
+  </path>
+  
+  <path id="library.adventnet-logging-4.0.71.classpath">
+    <pathelement location="${basedir}/lib/adventnet-logging-4.0.7.jar"/>
+    <pathelement location="${basedir}/lib/adventnet-snmp-4.0.7.jar"/>
+  </path>
+  
+  <path id="library.adventnet-snmp-4.0.7.classpath">
+    <pathelement location="${basedir}/../Dev-Library/adventnet-snmp-4.0.7.jar"/>
+  </path>
+  
+  <path id="library.lib.classpath">
+    <fileset dir="${basedir}/lib">
+      <patternset refid="library.patterns"/>
+    </fileset>
+  </path>
+  
+  <path id="library.maven:_ch.qos.logback:logback-classic:1.2.3.classpath">
+    <pathelement location="${path.variable.maven_repository}/ch/qos/logback/logback-classic/1.2.3/logback-classic-1.2.3.jar"/>
+  </path>
+  
+  <path id="library.maven:_ch.qos.logback:logback-core:1.2.3.classpath">
+    <pathelement location="${path.variable.maven_repository}/ch/qos/logback/logback-core/1.2.3/logback-core-1.2.3.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.jayway.jsonpath:json-path:2.4.0.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/jayway/jsonpath/json-path/2.4.0/json-path-2.4.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.vaadin.external.google:android-json:0.0.20131108.vaadin1.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.zaxxer:hikaricp:3.4.2.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/zaxxer/HikariCP/3.4.2/HikariCP-3.4.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_jakarta.activation:jakarta.activation-api:1.2.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/jakarta/activation/jakarta.activation-api/1.2.1/jakarta.activation-api-1.2.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_jakarta.annotation:jakarta.annotation-api:1.3.5.classpath">
+    <pathelement location="${path.variable.maven_repository}/jakarta/annotation/jakarta.annotation-api/1.3.5/jakarta.annotation-api-1.3.5.jar"/>
+  </path>
+  
+  <path id="library.maven:_jakarta.xml.bind:jakarta.xml.bind-api:2.3.2.classpath">
+    <pathelement location="${path.variable.maven_repository}/jakarta/xml/bind/jakarta.xml.bind-api/2.3.2/jakarta.xml.bind-api-2.3.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_mysql:mysql-connector-java:8.0.19.classpath">
+    <pathelement location="${path.variable.maven_repository}/mysql/mysql-connector-java/8.0.19/mysql-connector-java-8.0.19.jar"/>
+  </path>
+  
+  <path id="library.maven:_net.bytebuddy:byte-buddy-agent:1.10.6.classpath">
+    <pathelement location="${path.variable.maven_repository}/net/bytebuddy/byte-buddy-agent/1.10.6/byte-buddy-agent-1.10.6.jar"/>
+  </path>
+  
+  <path id="library.maven:_net.bytebuddy:byte-buddy:1.10.6.classpath">
+    <pathelement location="${path.variable.maven_repository}/net/bytebuddy/byte-buddy/1.10.6/byte-buddy-1.10.6.jar"/>
+  </path>
+  
+  <path id="library.maven:_net.minidev:accessors-smart:1.2.classpath">
+    <pathelement location="${path.variable.maven_repository}/net/minidev/accessors-smart/1.2/accessors-smart-1.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_net.minidev:json-smart:2.3.classpath">
+    <pathelement location="${path.variable.maven_repository}/net/minidev/json-smart/2.3/json-smart-2.3.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.logging.log4j:log4j-api:2.12.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/apache/logging/log4j/log4j-api/2.12.1/log4j-api-2.12.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.logging.log4j:log4j-to-slf4j:2.12.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/apache/logging/log4j/log4j-to-slf4j/2.12.1/log4j-to-slf4j-2.12.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apiguardian:apiguardian-api:1.1.0.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/apiguardian/apiguardian-api/1.1.0/apiguardian-api-1.1.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.assertj:assertj-core:3.13.2.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/assertj/assertj-core/3.13.2/assertj-core-3.13.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.hamcrest:hamcrest:2.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/hamcrest/hamcrest/2.1/hamcrest-2.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.junit.jupiter:junit-jupiter-api:5.5.2.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/junit/jupiter/junit-jupiter-api/5.5.2/junit-jupiter-api-5.5.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.junit.jupiter:junit-jupiter-engine:5.5.2.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/junit/jupiter/junit-jupiter-engine/5.5.2/junit-jupiter-engine-5.5.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.junit.jupiter:junit-jupiter-params:5.5.2.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/junit/jupiter/junit-jupiter-params/5.5.2/junit-jupiter-params-5.5.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.junit.jupiter:junit-jupiter:5.5.2.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/junit/jupiter/junit-jupiter/5.5.2/junit-jupiter-5.5.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.junit.platform:junit-platform-commons:1.5.2.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/junit/platform/junit-platform-commons/1.5.2/junit-platform-commons-1.5.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.junit.platform:junit-platform-engine:1.5.2.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/junit/platform/junit-platform-engine/1.5.2/junit-platform-engine-1.5.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.mockito:mockito-core:3.1.0.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/mockito/mockito-core/3.1.0/mockito-core-3.1.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.mockito:mockito-junit-jupiter:3.1.0.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/mockito/mockito-junit-jupiter/3.1.0/mockito-junit-jupiter-3.1.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.objenesis:objenesis:2.6.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/objenesis/objenesis/2.6/objenesis-2.6.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.opentest4j:opentest4j:1.2.0.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.ow2.asm:asm:5.0.4.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/ow2/asm/asm/5.0.4/asm-5.0.4.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.postgresql:postgresql:42.2.9.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/postgresql/postgresql/42.2.9/postgresql-42.2.9.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.projectlombok:lombok:1.18.10.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/projectlombok/lombok/1.18.10/lombok-1.18.10.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.skyscreamer:jsonassert:1.5.0.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/skyscreamer/jsonassert/1.5.0/jsonassert-1.5.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.slf4j:jul-to-slf4j:1.7.30.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/slf4j/jul-to-slf4j/1.7.30/jul-to-slf4j-1.7.30.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.slf4j:slf4j-api:1.7.30.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/slf4j/slf4j-api/1.7.30/slf4j-api-1.7.30.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework.boot:spring-boot-autoconfigure:2.2.4.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/boot/spring-boot-autoconfigure/2.2.4.RELEASE/spring-boot-autoconfigure-2.2.4.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework.boot:spring-boot-configuration-processor:2.2.4.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/boot/spring-boot-configuration-processor/2.2.4.RELEASE/spring-boot-configuration-processor-2.2.4.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework.boot:spring-boot-devtools:2.2.4.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/boot/spring-boot-devtools/2.2.4.RELEASE/spring-boot-devtools-2.2.4.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework.boot:spring-boot-starter-data-jdbc:2.2.4.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/boot/spring-boot-starter-data-jdbc/2.2.4.RELEASE/spring-boot-starter-data-jdbc-2.2.4.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework.boot:spring-boot-starter-jdbc:2.2.4.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/boot/spring-boot-starter-jdbc/2.2.4.RELEASE/spring-boot-starter-jdbc-2.2.4.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework.boot:spring-boot-starter-logging:2.2.4.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/boot/spring-boot-starter-logging/2.2.4.RELEASE/spring-boot-starter-logging-2.2.4.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework.boot:spring-boot-starter-test:2.2.4.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/boot/spring-boot-starter-test/2.2.4.RELEASE/spring-boot-starter-test-2.2.4.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework.boot:spring-boot-starter:2.2.4.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/boot/spring-boot-starter/2.2.4.RELEASE/spring-boot-starter-2.2.4.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework.boot:spring-boot-test-autoconfigure:2.2.4.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/boot/spring-boot-test-autoconfigure/2.2.4.RELEASE/spring-boot-test-autoconfigure-2.2.4.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework.boot:spring-boot-test:2.2.4.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/boot/spring-boot-test/2.2.4.RELEASE/spring-boot-test-2.2.4.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework.boot:spring-boot:2.2.4.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework.data:spring-data-commons:2.2.4.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/data/spring-data-commons/2.2.4.RELEASE/spring-data-commons-2.2.4.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework.data:spring-data-jdbc:1.1.4.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/data/spring-data-jdbc/1.1.4.RELEASE/spring-data-jdbc-1.1.4.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework.data:spring-data-relational:1.1.4.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/data/spring-data-relational/1.1.4.RELEASE/spring-data-relational-1.1.4.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework:spring-aop:5.2.3.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/spring-aop/5.2.3.RELEASE/spring-aop-5.2.3.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework:spring-beans:5.2.3.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/spring-beans/5.2.3.RELEASE/spring-beans-5.2.3.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework:spring-context:5.2.3.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/spring-context/5.2.3.RELEASE/spring-context-5.2.3.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework:spring-core:5.2.3.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/spring-core/5.2.3.RELEASE/spring-core-5.2.3.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework:spring-expression:5.2.3.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/spring-expression/5.2.3.RELEASE/spring-expression-5.2.3.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework:spring-jcl:5.2.3.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/spring-jcl/5.2.3.RELEASE/spring-jcl-5.2.3.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework:spring-jdbc:5.2.3.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/spring-jdbc/5.2.3.RELEASE/spring-jdbc-5.2.3.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework:spring-test:5.2.3.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/spring-test/5.2.3.RELEASE/spring-test-5.2.3.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework:spring-tx:5.2.3.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/spring-tx/5.2.3.RELEASE/spring-tx-5.2.3.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.xmlunit:xmlunit-core:2.6.3.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/xmlunit/xmlunit-core/2.6.3/xmlunit-core-2.6.3.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.yaml:snakeyaml:1.25.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/yaml/snakeyaml/1.25/snakeyaml-1.25.jar"/>
+  </path>
+  
+  
+  <!-- Global Libraries -->
+  
+  <path id="library.adventnet-logging-4.0.7.classpath">
+    <pathelement location="C:/Users/UNIX3/IdeaProjects/snmp2020/lib/adventnet-logging-4.0.7.jar"/>
+  </path>
+  
+  <path id="library.adventnet-snmp-4.0.7.classpath">
+    <pathelement location="C:/Users/UNIX3/IdeaProjects/snmp2020/lib/adventnet-snmp-4.0.7.jar"/>
+  </path>
+  
+  <!-- Modules -->
+  
+  <import file="${basedir}/module_snmp.xml"/>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.snmp" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.snmp" description="build all modules"/>
+  
+  <target name="init.artifacts">
+    <property name="artifacts.temp.dir" value="${basedir}/__artifacts_temp"/>
+    <property name="artifact.output.snmp:jar" value="${basedir}/out/artifacts/snmp_jar"/>
+    <mkdir dir="${artifacts.temp.dir}"/>
+    <property name="temp.jar.path.snmp.jar" value="${artifacts.temp.dir}/snmp.jar"/>
+  </target>
+  
+  <target name="artifact.snmp:jar" depends="init.artifacts, compile.module.snmp" description="Build &#39;snmp:jar&#39; artifact">
+    <property name="artifact.temp.output.snmp:jar" value="${artifacts.temp.dir}/snmp_jar"/>
+    <mkdir dir="${artifact.temp.output.snmp:jar}"/>
+    <jar destfile="${temp.jar.path.snmp.jar}" duplicate="preserve" filesetmanifest="mergewithoutmain">
+      <zipfileset dir="${snmp.output.dir}"/>
+      <zipfileset src="${path.variable.maven_repository}/org/springframework/boot/spring-boot-starter-logging/2.2.4.RELEASE/spring-boot-starter-logging-2.2.4.RELEASE.jar"/>
+      <zipfileset src="${path.variable.maven_repository}/org/springframework/boot/spring-boot-autoconfigure/2.2.4.RELEASE/spring-boot-autoconfigure-2.2.4.RELEASE.jar"/>
+      <zipfileset src="${path.variable.maven_repository}/org/springframework/spring-beans/5.2.3.RELEASE/spring-beans-5.2.3.RELEASE.jar"/>
+      <zipfileset src="${path.variable.maven_repository}/org/springframework/data/spring-data-relational/1.1.4.RELEASE/spring-data-relational-1.1.4.RELEASE.jar"/>
+      <zipfileset src="${path.variable.maven_repository}/org/springframework/boot/spring-boot/2.2.4.RELEASE/spring-boot-2.2.4.RELEASE.jar"/>
+      <zipfileset src="${path.variable.maven_repository}/ch/qos/logback/logback-core/1.2.3/logback-core-1.2.3.jar"/>
+      <zipfileset src="${basedir}/../Dev-Library/adventnet-snmp-4.0.7.jar"/>
+      <zipfileset src="${path.variable.maven_repository}/org/slf4j/jul-to-slf4j/1.7.30/jul-to-slf4j-1.7.30.jar"/>
+      <zipfileset src="${path.variable.maven_repository}/org/springframework/spring-expression/5.2.3.RELEASE/spring-expression-5.2.3.RELEASE.jar"/>
+      <zipfileset src="${path.variable.maven_repository}/org/springframework/data/spring-data-jdbc/1.1.4.RELEASE/spring-data-jdbc-1.1.4.RELEASE.jar"/>
+      <zipfileset src="${path.variable.maven_repository}/com/zaxxer/HikariCP/3.4.2/HikariCP-3.4.2.jar"/>
+      <zipfileset src="${path.variable.maven_repository}/org/postgresql/postgresql/42.2.9/postgresql-42.2.9.jar"/>
+      <zipfileset src="${path.variable.maven_repository}/org/springframework/spring-context/5.2.3.RELEASE/spring-context-5.2.3.RELEASE.jar"/>
+      <zipfileset src="${path.variable.maven_repository}/org/springframework/boot/spring-boot-devtools/2.2.4.RELEASE/spring-boot-devtools-2.2.4.RELEASE.jar"/>
+      <zipfileset src="${path.variable.maven_repository}/org/apache/logging/log4j/log4j-to-slf4j/2.12.1/log4j-to-slf4j-2.12.1.jar"/>
+      <zipfileset src="${path.variable.maven_repository}/org/springframework/spring-jdbc/5.2.3.RELEASE/spring-jdbc-5.2.3.RELEASE.jar"/>
+      <zipfileset src="${path.variable.maven_repository}/org/projectlombok/lombok/1.18.10/lombok-1.18.10.jar"/>
+      <zipfileset src="${path.variable.maven_repository}/org/springframework/boot/spring-boot-starter-jdbc/2.2.4.RELEASE/spring-boot-starter-jdbc-2.2.4.RELEASE.jar"/>
+      <zipfileset src="${path.variable.maven_repository}/org/yaml/snakeyaml/1.25/snakeyaml-1.25.jar"/>
+      <zipfileset src="${path.variable.maven_repository}/ch/qos/logback/logback-classic/1.2.3/logback-classic-1.2.3.jar"/>
+      <zipfileset src="${path.variable.maven_repository}/org/springframework/spring-jcl/5.2.3.RELEASE/spring-jcl-5.2.3.RELEASE.jar"/>
+      <zipfileset src="${path.variable.maven_repository}/jakarta/annotation/jakarta.annotation-api/1.3.5/jakarta.annotation-api-1.3.5.jar"/>
+      <zipfileset src="${path.variable.maven_repository}/org/springframework/boot/spring-boot-starter/2.2.4.RELEASE/spring-boot-starter-2.2.4.RELEASE.jar"/>
+      <zipfileset src="${basedir}/lib/adventnet-logging-4.0.7.jar"/>
+      <zipfileset src="${basedir}/lib/adventnet-snmp-4.0.7.jar"/>
+      <zipfileset src="${path.variable.maven_repository}/org/springframework/boot/spring-boot-configuration-processor/2.2.4.RELEASE/spring-boot-configuration-processor-2.2.4.RELEASE.jar"/>
+      <zipfileset src="${path.variable.maven_repository}/org/springframework/spring-aop/5.2.3.RELEASE/spring-aop-5.2.3.RELEASE.jar"/>
+      <zipfileset src="${path.variable.maven_repository}/org/springframework/spring-core/5.2.3.RELEASE/spring-core-5.2.3.RELEASE.jar"/>
+      <zipfileset src="${path.variable.maven_repository}/org/springframework/spring-tx/5.2.3.RELEASE/spring-tx-5.2.3.RELEASE.jar"/>
+      <zipfileset src="${path.variable.maven_repository}/mysql/mysql-connector-java/8.0.19/mysql-connector-java-8.0.19.jar"/>
+      <zipfileset src="${path.variable.maven_repository}/org/springframework/boot/spring-boot-starter-data-jdbc/2.2.4.RELEASE/spring-boot-starter-data-jdbc-2.2.4.RELEASE.jar"/>
+      <zipfileset src="${path.variable.maven_repository}/org/apache/logging/log4j/log4j-api/2.12.1/log4j-api-2.12.1.jar"/>
+      <zipfileset src="${path.variable.maven_repository}/org/slf4j/slf4j-api/1.7.30/slf4j-api-1.7.30.jar"/>
+      <zipfileset src="${path.variable.maven_repository}/org/springframework/data/spring-data-commons/2.2.4.RELEASE/spring-data-commons-2.2.4.RELEASE.jar"/>
+      <zipfileset src="${basedir}/../Dev-Library/adventnet-logging-4.0.7.jar"/>
+      <zipfileset file="${basedir}/../Dev-Library/adventnet-snmp-4.0.7.jar"/>
+      <zipfileset file="${basedir}/../Dev-Library/adventnet-logging-4.0.7.jar"/>
+    </jar>
+    <copy file="${temp.jar.path.snmp.jar}" tofile="${artifact.temp.output.snmp:jar}/snmp.jar"/>
+  </target>
+  
+  <target name="build.all.artifacts" depends="artifact.snmp:jar" description="Build all artifacts">
+    <mkdir dir="${artifact.output.snmp:jar}"/>
+    <copy todir="${artifact.output.snmp:jar}">
+      <fileset dir="${artifact.temp.output.snmp:jar}"/>
+    </copy>
+    
+    <!-- Delete temporary files -->
+    <delete dir="${artifacts.temp.dir}"/>
+  </target>
+  
+  <target name="all" depends="build.modules, build.all.artifacts" description="build all"/>
+</project>
